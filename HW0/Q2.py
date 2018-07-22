@@ -11,7 +11,14 @@ def filter_modification(f1, f2):
         lena_modify = plt.imread('./' + f2)
 
         # filter the modified part
-        diff = lena_modify - lena_origin
+        img_shape = np.shape(lena_origin)
+        diff = np.zeros(shape=img_shape)
+        
+        for i in img_shape[0]:
+            for j in img_shape[1]:
+                if lena_origin[i, j] != lena_modified[i, j]:
+                    diff[i, j] = lena_modified[i, j]
+        
 
         plt.imshow(diff)
 
